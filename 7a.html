@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple calculator</title>
+    <link rel="stylesheet" href="styles7a.css"/>
+    <script src="index.js" defer></script>
+</head>
+<body>
+    <h1>JAVASCRIPT CALCULATOR</h1>
+    <div class="container">
+        <div class="calculator">
+            <input type="text" placeholder="0" readonly id="outputvalue" value="">
+            <button class="functional" type="button">AC</button>
+            <button class="functional" type="button">CE</button>
+            <button class="operator" type="button">%</button>
+            <button class="operator" type="button">/</button>
+            <button type="button">7</button>
+            <button type="button">8</button>
+            <button type="button">9</button>
+            <button class="operator" type="button">*</button>
+            <button type="button">4</button>
+            <button type="button">5</button>
+            <button type="button">6</button>
+            <button class="operator" type="button">&minus;</button>
+            <button type="button">1</button>
+            <button type="button">2</button>
+            <button type="button">3</button>
+            <button class="operator" type="button">+</button>
+            <button type="button">0</button>
+            <button type="button">.</button>
+            <button type="button">00</button>
+            <button class="operator" type="button">=</button> 
+        </div>
+    </div>
+    <script>
+        const outputvalueElement=document.getElementById("outputvalue");
+        const buttonElements=document.querySelectorAll("button");
+        for(let i=2;i<buttonElements.length-1;i++){
+            buttonElements[i].addEventListener("click",()=>{
+                display(buttonElements[i].innerText);
+            });
+        }
+        buttonElements[0].addEventListener("click",allClear);
+        buttonElements[1].addEventListener("click",del);
+        buttonElements[buttonElements.length-1].addEventListener("click",calculate);
+
+        function display(character) {
+            outputvalueElement.value+=character;
+        }
+        function allClear() {
+            outputvalueElement.value="";
+        }
+        function del() {
+            if(outputvalueElement.value==="Error"){
+                outputvalueElement.value="";
+            } else{
+                outputvalueElement.value=outputvalueElement.value.slice(0,-1);
+            }
+        }
+        function calculate() {
+            try{
+                outputvalueElement.value=eval(outputvalueElement.value);
+            } catch(error){
+                outputvalueElement.value="Error";
+            }
+        }
+
+    </script>
+</body>
+</html>
